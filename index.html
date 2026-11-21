@@ -2,33 +2,449 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0c0b" />
   <link rel="manifest" href="./manifest.json" />
-  <title>Khaled Life</title>
+  <title>خالد أحمد | ١٨ عاماً من رحلتي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
-    html, body {
+    :root {
+      --bg: #0b0c0b;
+      --surface: #121412;
+      --text: #f3f1ec;
+      --muted: #9a9890;
+      --line: rgba(243, 241, 236, 0.12);
+      --accent: #e6e2d8;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #000;
     }
-    iframe {
-      border: none;
-      width: 100%;
-      height: 100%;
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Cairo", sans-serif;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(11, 12, 11, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kicker {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: "Amiri", serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 0.98rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .meta-item span {
       display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .meta-item strong {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .counter-box {
+      margin-top: 32px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .counter-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      text-align: center;
+    }
+
+    .unit {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 8px;
+    }
+
+    .unit .num {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .unit .lbl {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      background: transparent;
+    }
+
+    .quote-section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    blockquote {
+      font-family: "Amiri", serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      line-height: 1.7;
+      color: var(--accent);
+      max-width: 760px;
+    }
+
+    .quote-note {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .years-section {
+      padding: 64px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 28px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-family: "Amiri", serif;
+      font-size: 2rem;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .years-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 12px;
+    }
+
+    .year-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .year-card:hover,
+    .year-card.active {
+      border-color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .year-card strong {
+      display: block;
+      font-size: 1.15rem;
+    }
+
+    .year-card span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .year-detail {
+      margin-top: 24px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      min-height: 110px;
+    }
+
+    .year-detail h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .year-detail p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      .counter-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-links {
+        gap: 12px;
+        font-size: 0.82rem;
+      }
     }
   </style>
 </head>
 <body>
-  <iframe src="https://khaledlife-dtrx.whacka.app/" allowfullscreen></iframe>
+  <header class="topbar">
+    <div class="brand">خالد أحمد</div>
+    <nav class="nav-links">
+      <a href="#journey">الرحلة</a>
+      <a href="#years">السنوات</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="journey">
+      <div class="kicker">١٨ عاماً من رحلتي</div>
+      <h1>١٨ عاماً من رحلتي</h1>
+      <div class="subtitle">خالد أحمد</div>
+      <p class="lead">١٨ عاماً من الحكايات والذكريات والطموحات.</p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span>البداية</span>
+          <strong>٢٣ نوفمبر ٢٠٠٨</strong>
+        </div>
+        <div class="meta-item">
+          <span>الاكتمال الثامن عشر</span>
+          <strong>٢٣ نوفمبر ٢٠٢٦</strong>
+        </div>
+      </div>
+
+      <div class="counter-box">
+        <div class="counter-label">العدّاد نحو ٢٣ نوفمبر ٢٠٢٦</div>
+        <div class="counter-grid">
+          <div class="unit"><span class="num" id="days">--</span><span class="lbl">يوم</span></div>
+          <div class="unit"><span class="num" id="hours">--</span><span class="lbl">ساعة</span></div>
+          <div class="unit"><span class="num" id="minutes">--</span><span class="lbl">دقيقة</span></div>
+          <div class="unit"><span class="num" id="seconds">--</span><span class="lbl">ثانية</span></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a href="#years" class="btn btn-primary">ابدأ الرحلة</a>
+        <a href="#years" class="btn btn-ghost">القائمة الكاملة</a>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <blockquote>
+        هذا ليس سيرة ذاتية تقليدية. إنه مكان للسنوات نفسها — التي أتذكرها بوضوح، والتي ما زلت أجمعها، والتي لم تأتِ بعد.
+      </blockquote>
+      <p class="quote-note">كل عام هنا يحمل محطة وتفصيلاً خاصاً بك، ويمكنك تعديل النصوص وتخصيصها بحرية تامة.</p>
+    </section>
+
+    <section class="years-section" id="years">
+      <div class="section-head">
+        <h2>الرحلة عبر ثمانية عشر عاماً</h2>
+        <p>اختر أي سنة لعرض أو تعديل تفاصيلها</p>
+      </div>
+
+      <div class="years-strip" id="yearsStrip"></div>
+
+      <div class="year-detail" id="yearDetail">
+        <h3 id="detailTitle">اختر سنة من القائمة</h3>
+        <p id="detailText">اضغط على أي سنة من ٢٠٠٨ حتى ٢٠٢٦ لعرض ملاحظتها أو تعديلها مباشرة في الكود.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    خالد أحمد — موقع مستقل بدون أي شارات خارجية
+  </footer>
+
   <script>
+    const targetDate = new Date("2026-11-23T00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = Math.max(0, targetDate - now);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const yearsData = {
+      2008: "بداية الحكاية في ٢٣ نوفمبر ٢٠٠٨.",
+      2009: "خطوات الطفولة الأولى وبدايات الذاكرة.",
+      2010: "أيام وتفاصيل تتشكل بهدوء.",
+      2011: "مرحلة جديدة من النمو والمشاهدة.",
+      2012: "ذكريات المدرسة والفضول المبكر.",
+      2013: "توسّع الاهتمامات واكتشاف الأشياء.",
+      2014: "محطات تعلم وتجارب متراكمة.",
+      2015: "تبلور الشخصية ونضج الأفكار.",
+      2016: "بدايات الشغف والتجريب.",
+      2017: "سنوات تعيد تشكيل النظرة للأمور.",
+      2018: "أحلام أكبر وتساؤلات أعمق.",
+      2019: "محطة فارقة نحو الاعتماد على النفس.",
+      2020: "عام التأمل وإعادة ترتيب الأولويات.",
+      2021: "تجارب جديدة وبناء مهارات مختلفة.",
+      2022: "خطوات أوضح في الطريق.",
+      2023: "تراكم الخبرات والبحث عن الذات.",
+      2024: "مرحلة الإنجاز والتطوير المستمر.",
+      2025: "الاستعداد للعام الثامن عشر برؤية أوضح.",
+      2026: "اكتمال ١٨ عاماً من الرحلة وبداية فصل جديد."
+    };
+
+    const strip = document.getElementById("yearsStrip");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailText = document.getElementById("detailText");
+
+    Object.keys(yearsData).forEach((year) => {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "year-card";
+      card.innerHTML = `<strong>${year}</strong><span>سنة</span>`;
+      card.addEventListener("click", () => {
+        document.querySelectorAll(".year-card").forEach((el) => el.classList.remove("active"));
+        card.classList.add("active");
+        detailTitle.textContent = `عام ${year}`;
+        detailText.textContent = yearsData[year];
+      });
+      strip.appendChild(card);
+    });
+
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js");
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
       });
     }
   </script>
